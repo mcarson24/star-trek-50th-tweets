@@ -16,7 +16,7 @@
 						<?php $tweet = new App\Tweet($tweet); ?>
 						<tr>
 							<td style="width: 25%;"><?= $tweet->time() ?></td>
-							<td><?= $tweet->text() ?></td>
+							<td><?= $tweet->formattedText() ?></td>
 						</tr>
 					<?php endforeach ?>
 				</tbody>

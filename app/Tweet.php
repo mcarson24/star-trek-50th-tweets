@@ -24,16 +24,25 @@ class Tweet
 
 	public function text()
 	{
-		return $this->convert_twitter_handles_to_link($this->convert_links_to_anchor_tags($this->text));
+		return $this->text;
 	}
 
-	private function convert_links_to_anchor_tags($text)
+	public function formattedText()
 	{
-		return preg_replace('/(https:\/\/[a-z.\/0-9_]*)/i', '<a href="$1">$1</a>', $text);
+		return $this->convert_links_to_anchor_tags()->convert_twitter_handles_to_links();
 	}
 
-	private function convert_twitter_handles_to_link($text)
+	private function convert_links_to_anchor_tags()
 	{
-		return preg_replace('/@(\w+)/', '<a href="https://twitter.com/$1">@$1</a>', $text);
+		$this->text = preg_replace('/(https:\/\/[a-z.\/0-9_]*)/i', '<a href="$1">$1</a>', $this->text);
+
+		return $this;
+	}
+
+	private function convert_twitter_handles_to_links()
+	{
+		return preg_replace('/@(\w+)/', '<a href="https://twitter.com/$1">@$1</a>', $this->text);
+
+		return $this;
 	}
 }
