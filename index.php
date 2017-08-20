@@ -1,9 +1,14 @@
 <?php
-$tweets_file = fopen('holly-tweets.csv', 'a+');
 
-$tweets = fgetcsv($tweets_file, 1050000, '^');
+require(__DIR__ . '/vendor/autoload.php');
 
-$table_headers = explode(',', $tweets[0]);
+use App\TweetLoader;
+
+
+// $tweets_file = fopen('app/holly-tweets.csv', 'a+');
+
+// $tweets = fgetcsv($tweets_file, 1050000, '^');
+$tweets = (new TweetLoader)->get();
 
 function convert_link($text)
 {

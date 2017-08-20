@@ -1,0 +1,18 @@
+{
+    "name": "mcarson24/st50-tweets",
+    "description": "All of Holly Amos' tweets for her Star Trek in One Year Bing",
+    "type": "project",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Matthew Carson",
+            "email": "matthew24carson@gmail.com"
+        }
+    ],
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "App\\": "app/"
+        }
+    }
+}
