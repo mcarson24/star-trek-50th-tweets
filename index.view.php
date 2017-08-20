@@ -15,7 +15,7 @@
 					<?php foreach ($tweets as $tweet) : ?>
 						<?php $items = explode(',', $tweet); ?>
 						<tr>
-							<td><?= $items[0] ?></td>
+							<td><?= \Carbon\Carbon::parse($items[0])->toDayDateTimeString() ?></td>
 							<td><?= convert_link($items[2]) ?></td>
 						</tr>
 					<?php endforeach ?>
