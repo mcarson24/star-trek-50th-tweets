@@ -4,6 +4,11 @@ require(__DIR__ . '/vendor/autoload.php');
 
 use App\TweetLoader;
 
-$tweets = (new TweetLoader)->get();
+$tweets = (new TweetLoader)->load()->reverse();
 
-include('index.view.php');
+$loader = new Twig_Loader_Filesystem('views');
+$twig = new Twig_Environment($loader, [
+	'autoescape' => false
+]);
+
+echo $twig->render('index.twig', ['tweets' => $tweets]);

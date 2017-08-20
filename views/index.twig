@@ -12,13 +12,13 @@
 					<th scope="col">Tweet</th>
 				</tr>
 				<tbody>
-					<?php foreach ($tweets as $tweet) : ?>
-						<?php $tweet = new App\Tweet($tweet); ?>
+					{% for tweet in tweets %}
 						<tr>
-							<td style="width: 25%;"><?= $tweet->time() ?></td>
-							<td><?= $tweet->formattedText() ?></td>
+							<td style="width: 25%;">{{ tweet.time() }}</td>
+							<td>{{ tweet.formattedText() }}</td>
 						</tr>
-					<?php endforeach ?>
+					{% endfor %}
+					
 				</tbody>
 			</thead>
 		</table>

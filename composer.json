@@ -10,7 +10,9 @@
         }
     ],
     "require": {
-        "nesbot/carbon": "^1.22"
+        "nesbot/carbon": "^1.22",
+        "twig/twig": "~2.0",
+        "illuminate/support": "^5.4"
     },
     "autoload": {
         "psr-4": {
