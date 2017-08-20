@@ -13,10 +13,10 @@
 				</tr>
 				<tbody>
 					<?php foreach ($tweets as $tweet) : ?>
-						<?php $items = explode(',', $tweet); ?>
+						<?php $tweet = new App\Tweet($tweet); ?>
 						<tr>
-							<td><?= \Carbon\Carbon::parse($items[0])->toDayDateTimeString() ?></td>
-							<td><?= convert_link($items[2]) ?></td>
+							<td style="width: 25%;"><?= $tweet->time() ?></td>
+							<td><?= $tweet->text() ?></td>
 						</tr>
 					<?php endforeach ?>
 				</tbody>
