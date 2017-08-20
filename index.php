@@ -11,4 +11,4 @@ $twig = new Twig_Environment($loader, [
 	'autoescape' => false
 ]);
 
-echo $twig->render('index.twig', ['tweets' => $tweets]);
+echo $twig->render('index.twig', compact('tweets'));
