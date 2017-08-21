@@ -42,7 +42,5 @@ class Tweet
 	private function convert_twitter_handles_to_links()
 	{
 		return preg_replace('/@(\w+)/', '<a href="https://twitter.com/$1">@$1</a>', $this->text);
-
-		return $this;
 	}
 }
