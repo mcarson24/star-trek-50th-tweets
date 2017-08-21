@@ -10,14 +10,17 @@ class TweetLoader
 	protected $file;
 	protected $tweets;
 
-	public function __construct()
-	{
-		$this->file = fopen('./app/holly-tweets.csv', 'a+');
-		$this->tweets = fgetcsv($this->file, 1050000, '^');
-	}
+	// public function __construct($file)
+	// {
+	// 	$this->file = fopen($file, 'r');
+	// 	$this->tweets = fgetcsv($this->file, 1050000, '^');
+	// }
 
-	public function load()
+	public function load($file)
 	{
+		$this->file = fopen($file, 'r');
+		$this->tweets = fgetcsv($this->file, 1050000, '^');
+
 		return $this->toTweets();
 	}
 
