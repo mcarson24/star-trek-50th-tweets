@@ -2,24 +2,27 @@
 <html lang="en">
 	<head>
 		<meta charset="UTF-8"/>
-		<title></title>
+		<title>Holly Amos' Tweets about Star Trek in One Year</title>
+		<link rel="stylesheet" href="/views/css/style.css">
 	</head>
 	<body>
-		<table>
-			<thead>
-				<tr>
-					<th scope="col">Timestamp</th>
-					<th scope="col">Tweet</th>
-				</tr>
-				<tbody>
-					{% for tweet in tweets %}
-						<tr>
-							<td style="width: 25%;">{{ tweet.time() }}</td>
-							<td>{{ tweet.formattedText() }}</td>
-						</tr>
-					{% endfor %}
-				</tbody>
-			</thead>
-		</table>
+		<div class="container m-0-auto">
+			<table class="table">
+				<thead>
+					<tr class="header-row">
+						<th scope="col" class="table-header text-center">Timestamp (UTC)</th>
+						<th scope="col" class="table-header text-center">Tweet</th>
+					</tr>
+					<tbody>
+						{% for tweet in tweets %}
+							<tr>
+								<td>{{ tweet.time() }}</td>
+								<td>{{ tweet.formattedText() }}</td>
+							</tr>
+						{% endfor %}
+					</tbody>
+				</thead>
+			</table>
+		</div>
 	</body>
 </html>

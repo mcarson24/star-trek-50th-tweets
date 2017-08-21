@@ -1,0 +1,15 @@
+.table-header {
+	@extend .h-1_5;
+}
+
+.header-row {
+	th {
+		@extend .text-center;
+	}
+	height: 50px;
+}
+
+td {
+	width: 35%;
+	padding: 8px 0;
+}

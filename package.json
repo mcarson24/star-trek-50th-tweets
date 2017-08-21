@@ -1,0 +1,20 @@
+{
+  "name": "st50-tweets",
+  "version": "0.0.1",
+  "description": "All of Holly Amos' tweets for her 'One Year Star Trek Challenge'",
+  "main": "index.php",
+  "repository": {},
+  "author": "Matthew Carson <matthew24carson@gmail.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "gulp": "^3.8.11",
+    "gulp-concat": "^2.6.1",
+    "gulp-jshint": "^1.9.0",
+    "gulp-ruby-sass": "^1.0.5",
+    "gulp-sourcemaps": "^1.5.2",
+    "gulp-uglify": "^3.0.0"
+  },
+  "dependencies": {
+    "bulma": "^0.5.1"
+  }
+}
