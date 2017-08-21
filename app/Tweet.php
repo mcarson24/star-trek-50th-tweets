@@ -19,7 +19,7 @@ class Tweet
 
 	public function time()
 	{
-		return $this->time->toDayDateTimeString();
+		return $this->time->format('l, F jS, g:ia');
 	}
 
 	public function text()
