@@ -34,7 +34,7 @@ class Tweet
 
 	private function convert_links_to_anchor_tags()
 	{
-		$this->text = preg_replace('/(https:\/\/[a-z.\/0-9_]*)/i', '<a href="$1">$1</a>', $this->text);
+		$this->text = preg_replace('/(http[s]?:\/\/[a-z.\/0-9_?=-]*)/i', '<a href="$1">$1</a>', $this->text);
 
 		return $this;
 	}
