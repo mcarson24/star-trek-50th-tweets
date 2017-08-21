@@ -1,7 +1,11 @@
-@import "../node_modules/bulma/bulma";
+// @import "../node_modules/bulma/bulma";
 @import "utilities";
 @import "text";
 @import "tables";
+
+* {
+	font-family: sans-serif;
+}
 
 .container {
 	width: 85%;
