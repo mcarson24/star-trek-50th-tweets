@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "description": "All of Holly Amos' tweets for her 'One Year Star Trek Challenge'",
   "main": "index.php",
-  "repository": {},
+  "repository": {"https://github.com/mcarson24/star-trek-50th-tweets.git"},
   "author": "Matthew Carson <matthew24carson@gmail.com>",
   "license": "MIT",
   "devDependencies": {

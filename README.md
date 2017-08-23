@@ -4,7 +4,7 @@ She knows quite a lot about Star Trek since she works for CBS in their Star Trek
 
 She archived her tweets, but the Google Spreadsheet was ugly and a little hard to read so I did this because I was bored.
 
-I'm pretty much done with this I lost interest quickly. It doesn't look pretty but is easier to navigate then the spreadsheet was.
+I'm pretty much done with this since I lost interest quickly. It doesn't look pretty but is easier to navigate then the spreadsheet was.
 
 After cloning repo, run:
 
