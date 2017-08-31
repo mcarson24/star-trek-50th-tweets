@@ -14,7 +14,7 @@ class Tweet
 		$items = explode(',', $tweetText);
 
 		$this->time = Carbon::parse($items[0]);
-		$this->text = $items[2];
+		$this->text = $items[1];
 	}
 
 	public function time()
