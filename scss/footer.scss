@@ -3,8 +3,20 @@ footer {
 	background-color: $black;
 	color: $white;
 	padding: 15px 0;
+	.flex {
+		height: 50px;
+	}
+	.disclaimer {
+		font-size: .75em;
+		height: 25px;
+	}
 	a {
 		color: $white;
 		text-decoration: underline;
+	}
+	.top {
+		p {
+			// width: 33%;
+		}
 	}
 }

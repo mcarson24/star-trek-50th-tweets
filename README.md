@@ -4,7 +4,13 @@ Her live tweets of each episode included different factoids/behind-the-scenes in
 
 She archived her tweets, but the Google Spreadsheet was ugly and a little hard to read so I did this because I was bored.
 
-I'm pretty much done with this since I lost interest quickly. It doesn't look pretty but is easier to navigate then the spreadsheet was.
+I'm pretty much done with this since I lost interest quickly. It doesn't look pretty, but is easier to navigate then the spreadsheet was.
+
+It's currently sitting at https://holly-amos-tweets.herokuapp.com
+
+Use cmd/ctrl + f to search.
+
+To get it running locally:
 
 After cloning repo, run:
 
