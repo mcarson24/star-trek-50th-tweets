@@ -1,8 +1,8 @@
   var gulp = require('gulp'),
-    uglify = require('gulp-uglify'),
-    sass = require('gulp-ruby-sass'),
-    concat = require('gulp-concat'),
-    sourcemaps = require('gulp-sourcemaps');
+      uglify = require('gulp-uglify'),
+      sass = require('gulp-ruby-sass'),
+      concat = require('gulp-concat'),
+      sourcemaps = require('gulp-sourcemaps');
 
 gulp.task('sass', function () {
     return sass('scss/style.scss', {

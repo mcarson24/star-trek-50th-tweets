@@ -8,16 +8,12 @@
 
 .p-b-s { padding-bottom: 10px; }
 .p-t-s { padding-top: 10px; }
+
 // Text Alignment
-.text-center {
-	text-align: center;
-}
-.text-right {
-	text-align: right;
-}
-.vertical-align-center {
-	vertical-align: super;
-}
+.text-center { text-align: center; }
+.text-right  { text-align: right; }
+.text-left   { text-align: left }
+.vertical-align-center { vertical-align: super; }
 
 .flex {
 	display: flex;
