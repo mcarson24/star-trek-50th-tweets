@@ -36,20 +36,20 @@ class Tweet
 
 	private function links_to_anchor_tags()
 	{
-		$this->text = preg_replace('/(http[s]?:\/\/[a-z.\/0-9_?=-]*)/i', '<a href="$1">$1</a>', $this->text);
+		$this->text = preg_replace('/(http[s]?:\/\/[a-z.\/0-9_?=-]*)/i', '<a target="_blank" href="$1">$1</a>', $this->text);
 
 		return $this;
 	}
 
 	private function twitter_handles_to_links()
 	{
-		$this->text =  preg_replace('/@(\w+)/', '<a href="https://twitter.com/$1">@$1</a>', $this->text);
+		$this->text =  preg_replace('/@(\w+)/', '<a target="_blank" href="https://twitter.com/$1">@$1</a>', $this->text);
 
 		return $this;
 	}
 
 	private function hashtags_to_links()
 	{
-		return preg_replace('/#([a-z0-9]+)/i', '<a href="https://twitter.com/hashtag/$1?src=hash">#$1</a>', $this->text);
+		return preg_replace('/#([a-z0-9]+)/i', '<a target="_blank" href="https://twitter.com/hashtag/$1?src=hash">#$1</a>', $this->text);
 	}
 }
