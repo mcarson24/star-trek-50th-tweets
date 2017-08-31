@@ -6,23 +6,23 @@
 		<link rel="stylesheet" href="css/style.css">
 	</head>
 	<body>
-		<div class="container m-0-auto">
+		<div id="title" class="container m-0-auto">
 			<h1 class="text-center">
 				<a href="https://twitter.com/hollyamos22">@hollyamos22</a>
 				tweets all the Star Trek
 				<img src="images/starfleet-logo.png" alt="Delta by Chris from the Noun Project" class="logo">
 			</h1>
-			<table>
+			<table class="table">
 				<thead>
 					<tr class="header-row">
-						<th scope="col" class="table-header text-left">Time (U.S. Pacific)</th>
-						<th scope="col" class="table-header text-left">Tweet</th>
+						<th scope="col" class="table-header text-left p-l-1">Time (U.S. Pacific)</th>
+						<th scope="col" class="table-header text-left p-l-1">Tweet</th>
 					</tr>
 					<tbody>
 						{% for tweet in tweets %}
 							<tr>
-								<td class="p-t-s p-b-s">{{ tweet.time() }}</td>
-								<td class="p-t-s p-b-s">{{ tweet.formattedText() }}</td>
+								<td class="p-t-s p-b-s p-l-1">{{ tweet.time() }}</td>
+								<td class="p-t-s p-b-s p-l-1">{{ tweet.formattedText() }}</td>
 							</tr>
 						{% endfor %}
 					</tbody>
