@@ -1,6 +1,6 @@
-In 2016, to celebrate Star Trek's 50th anniversary [Holly Amos](https://twitter.com/hollyamos22) rewatched all 726 Star Trek episodes and 13 movies in one year. 
+Professional Trekspert [Holly Amos](https://twitter.com/hollyamos22) rewatched all 726 Star Trek episodes and 13 movies in 2016. 
 
-She knows quite a lot about Star Trek since she works for CBS in their Star Trek archive. This made her live tweets of each episode with different factoids/behind-the-scenes information pretty interesting and made me want to re-watch the series myself. 
+Her live tweets of each episode included different factoids/behind-the-scenes information that are pretty interesting and made me want to re-watch the series myself. 
 
 She archived her tweets, but the Google Spreadsheet was ugly and a little hard to read so I did this because I was bored.
 
@@ -12,6 +12,6 @@ After cloning repo, run:
 
 Just load up a php server locally:
 
-``` php -S localhost:8000 ```
+``` php -S localhost:8000 -t public```
 
-visit localhost:8000 to view tweets.
+visit localhost:8000 in a web browser to view tweets.
