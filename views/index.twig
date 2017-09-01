@@ -2,6 +2,7 @@
 <html lang="en">
 	<head>
 		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<title>Holly Amos tweets all the Star Trek</title>
 		<link rel="stylesheet" href="css/style.css">
 		<link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
@@ -13,22 +14,21 @@
 				tweets all the Star Trek
 				<img src="images/starfleet-logo.png" alt="Delta by Chris from the Noun Project" class="logo">
 			</h1>
-			<table class="table">
-				<thead>
-					<tr class="header-row">
-						<th scope="col" class="table-header text-left p-l-1">Time (U.S. Pacific)</th>
-						<th scope="col" class="table-header text-left p-l-1">Tweet</th>
-					</tr>
-					<tbody>
-						{% for tweet in tweets %}
-							<tr>
-								<td class="p-t-s p-b-s p-l-1">{{ tweet.time() }}</td>
-								<td class="p-t-s p-b-s p-l-1">{{ tweet.formattedText() }}</td>
-							</tr>
-						{% endfor %}
-					</tbody>
-				</thead>
-			</table>
+			<div class="tweet-sheet">
+				<div style="display: flex;">
+					<h2 class="time-header text-left p-l-1">Time (U.S. Pacific)</h2>
+					<h2 class="tweet-header text-left">Tweet</h2>
+				</div>
+				{% for tweet in tweets %}
+					<div class="flex">
+						<p class="time p-t-s p-b-s p-l-1">{{ tweet.time() }}</p>
+						<p class="short-time p-t-s p-b-s p-l-1">{{ tweet.shortTime() }}</p>
+						<div class="tweet-text">
+							<p class="p-t-s p-b-s p-l-1">{{ tweet.formattedText() }}</p>
+						</div>
+					</div>
+				{% endfor %}
+			</div>
 		</div>
 		{{ include('footer.twig') }}
 	</body>

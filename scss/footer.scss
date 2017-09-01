@@ -1,5 +1,5 @@
 footer {
-	height: 100px;
+	height: 125px;
 	background-color: $black;
 	color: $white;
 	padding: 15px 0;
@@ -10,13 +10,14 @@ footer {
 		font-size: .75em;
 		height: 25px;
 	}
+	.container {
+		width: 95%;
+	}
+	.top {
+		margin-bottom: 25px;
+	}
 	a {
 		color: $white;
 		text-decoration: underline;
-	}
-	.top {
-		p {
-			// width: 33%;
-		}
 	}
 }

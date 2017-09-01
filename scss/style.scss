@@ -1,16 +1,11 @@
-// @import "../node_modules/bulma/bulma";
 @import url('https://fonts.googleapis.com/css?family=PT+Sans:400,700');
 @import "variables";
 @import "utilities";
-@import "misc";
+@import "page";
 @import "text";
-@import "tables";
 @import "logo";
 @import "footer";
-
-* {
-	font-family: 'PT Sans';
-}
+@import "media";
 
 html, body {
 	margin: 0;
@@ -23,9 +18,6 @@ html {
 }	
 
 body {
+	font-family: 'PT Sans';
 	background: transparent;
-}
-
-.container {
-	width: 85%;
 }

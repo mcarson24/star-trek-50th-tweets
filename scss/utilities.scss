@@ -16,10 +16,11 @@
 .text-right  { text-align: right; }
 .text-left   { text-align: left }
 .vertical-align-center { vertical-align: super; }
+.center-items { justify-content: space-between; }
 
 .flex {
 	display: flex;
 	justify-content: space-around;
 }
 
-.center-items { justify-content: space-between; }
+.no-underline { text-decoration: none; }

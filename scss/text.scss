@@ -14,7 +14,18 @@ a {
 	width: 250px;
 }
 
-// Remove text decoration from other links
-.no-underline {
-	text-decoration: none;
+.time-header {
+	width: 25%;
 }
+
+.tweet-header {
+	width: 75%;
+	padding-top: 33px;
+}
+
+.tweet-text {
+	width: 75%;
+	font-size: .75em;
+	overflow: scroll;
+}
+
