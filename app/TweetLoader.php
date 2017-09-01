@@ -7,7 +7,6 @@ use Illuminate\Support\Collection;
 
 class TweetLoader
 {
-	protected $file;
 	protected $tweets;
 
 	/**
@@ -18,8 +17,8 @@ class TweetLoader
 	 */
 	public function load($file)
 	{
-		$this->file = fopen($file, 'r');
-		$this->tweets = fgetcsv($this->file, 1050000, '^');
+		$file = fopen($file, 'r');
+		$this->tweets = fgetcsv($file, 1050000, '^');
 
 		return $this->toTweets();
 	}
@@ -32,10 +31,12 @@ class TweetLoader
 	private function toTweets()
 	{
 		$allTweets = collect();
+
 		foreach ($this->tweets as $tweet)
 		{	
 			$allTweets[] = new Tweet($tweet);
 		}
+		
 		return $allTweets;
 	}
 }
