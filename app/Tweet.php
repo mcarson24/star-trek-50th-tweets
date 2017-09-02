@@ -13,7 +13,7 @@ class Tweet
 	{
 		$items = explode(',', $tweetText);
 
-		$this->time = Carbon::parse($items[0]);
+		$this->time = Carbon::parse($items[0])->setTimezone('America/Los_Angeles');
 		$this->text = $items[1];
 	}
 
@@ -24,7 +24,7 @@ class Tweet
 	 */
 	public function time()
 	{
-		return $this->time->setTimezone('America/Los_Angeles')->format('l, F jS, g:ia');
+		return $this->time->format('l, F jS, g:ia');
 	}
 
 	/**
@@ -34,19 +34,31 @@ class Tweet
 	 */
 	public function shortTime()
 	{
-		return $this->time->setTimezone('America/Los_Angeles')->format('M jS');
+		return $this->time->format('M jS');
+	}
+
+	/**
+	 * Return the text of the tweet.
+	 * 
+	 * @return string
+	 */
+	public function formattedText()
+	{
+		$this->formatText();
+
+		return $this->text;
 	}
 
  	/**
  	 * Completely format the text of the tweet.
  	 *  
- 	 * @return string
+ 	 * @return void
  	 */
-	public function formattedText()
+	public function formatText()
 	{
-		return $this->links_to_anchor_tags()
-				    ->twitter_handles_to_links()
-				    ->hashtags_to_links();
+		$this->links_to_anchor_tags()
+  		     ->twitter_handles_to_links()
+		     ->hashtags_to_links();
 	}
 
 	/**
@@ -80,6 +92,8 @@ class Tweet
 	 */
 	private function hashtags_to_links()
 	{
-		return preg_replace('/#([a-z0-9]+)/i', '<a target="_blank" href="https://twitter.com/hashtag/$1?src=hash">#$1</a>', $this->text);
+		$this->text = preg_replace('/#([a-z0-9]+)/i', '<a target="_blank" href="https://twitter.com/hashtag/$1?src=hash">#$1</a>', $this->text);
+
+		return $this;
 	}
 }
