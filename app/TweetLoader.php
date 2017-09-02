@@ -17,8 +17,7 @@ class TweetLoader
 	 */
 	public function load($file)
 	{
-		$file = fopen($file, 'r');
-		$this->tweets = fgetcsv($file, 1050000, '^');
+		$this->tweets = collect(fgetcsv(fopen($file, 'r'), 1050000, '^'));
 
 		return $this->toTweets();
 	}
@@ -30,13 +29,8 @@ class TweetLoader
 	 */
 	private function toTweets()
 	{
-		$allTweets = collect();
-
-		foreach ($this->tweets as $tweet)
-		{	
-			$allTweets[] = new Tweet($tweet);
-		}
-		
-		return $allTweets;
+		return $this->tweets->map(function($tweet) {
+			return new Tweet($tweet);
+		});
 	}
 }
