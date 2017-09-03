@@ -16,6 +16,17 @@ gulp.task('sass', function () {
     .pipe(gulp.dest('public/css'));
 });
 
+gulp.task('prod', function () {
+    return sass('scss/style.scss', {
+      sourcemap: false,
+      style: 'compressed'
+    })
+    .on('error', function (err) {
+        console.error('Error!', err.message);
+    })
+    .pipe(gulp.dest('public/css'));
+});
+
 gulp.task('watch', function() {
   gulp.watch(['scss/**/*'], ['sass']);
 });
