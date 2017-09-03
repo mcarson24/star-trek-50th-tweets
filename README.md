@@ -8,7 +8,7 @@ I'm pretty much done with this since I lost interest quickly. It doesn't look pr
 
 ---
 
-It's currently sitting at [https://star-trek-50-tweets.herokuapp.com/] (https://star-trek-50-tweets.herokuapp.com/)
+It's currently sitting at [https://star-trek-50-tweets.herokuapp.com/](https://star-trek-50-tweets.herokuapp.com/)
 
 **Use cmd/ctrl + f to search.**
 
