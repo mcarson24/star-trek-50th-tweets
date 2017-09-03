@@ -6,9 +6,13 @@ She archived her tweets, but the Google Spreadsheet was ugly and a little hard t
 
 I'm pretty much done with this since I lost interest quickly. It doesn't look pretty, but is easier to navigate then the spreadsheet was.
 
-It's currently sitting at https://holly-amos-tweets.herokuapp.com
+---
 
-Use cmd/ctrl + f to search.
+It's currently sitting at [https://star-trek-50-tweets.herokuapp.com/] (https://star-trek-50-tweets.herokuapp.com/)
+
+**Use cmd/ctrl + f to search.**
+
+---
 
 To get it running locally:
 
@@ -16,7 +20,7 @@ After cloning repo, run:
 
 ``` composer install ```
 
-Just load up a php server locally:
+Load up a php server locally:
 
 ``` php -S localhost:8000 -t public```
 
