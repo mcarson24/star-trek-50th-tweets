@@ -56,9 +56,9 @@ class Tweet
  	 */
 	public function formatText()
 	{
-		$this->links_to_anchor_tags()
-  		     ->twitter_handles_to_links()
-		     ->hashtags_to_links();
+		$this->linksToAnchorTags()
+  		     ->twitterHandlesToAchnorTags()
+		     ->hashtagsToAnchorTags();
 	}
 
 	/**
@@ -66,7 +66,7 @@ class Tweet
 	 * 
 	 * @return App\Tweet
 	 */
-	private function links_to_anchor_tags()
+	private function linksToAnchorTags()
 	{
 		$this->text = preg_replace('/(http[s]?:\/\/[a-z.\/0-9_?=-]*)/i', '<a target="_blank" href="$1">$1</a>', $this->text);
 
@@ -78,7 +78,7 @@ class Tweet
 	 * 
 	 * @return App\Tweet
 	 */
-	private function twitter_handles_to_links()
+	private function twitterHandlesToAchnorTags()
 	{
 		$this->text =  preg_replace('/@(\w+)/', '<a target="_blank" href="https://twitter.com/$1">@$1</a>', $this->text);
 
@@ -90,7 +90,7 @@ class Tweet
 	 * 
 	 * @return string
 	 */
-	private function hashtags_to_links()
+	private function hashtagsToAnchorTags()
 	{
 		$this->text = preg_replace('/#([a-z0-9]+)/i', '<a target="_blank" href="https://twitter.com/hashtag/$1?src=hash">#$1</a>', $this->text);
 
