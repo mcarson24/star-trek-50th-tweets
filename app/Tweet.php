@@ -78,7 +78,7 @@ class Tweet
      *
      * @return App\Tweet
      */
-    private function twitterHandlesToAchnorTags()
+    private function twitterHandlesToAnchorTags()
     {
         $this->text =  preg_replace('/@(\w+)/', '<a target="_blank" href="https://twitter.com/$1">@$1</a>', $this->text);
 
