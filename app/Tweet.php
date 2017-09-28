@@ -4,96 +4,96 @@ namespace App;
 
 use Carbon\Carbon;
 
-class Tweet 
+class Tweet
 {
-	protected $time;
-	protected $text;
+    protected $time;
+    protected $text;
 
-	public function __construct($tweetText)
-	{
-		$items = explode(',', $tweetText);
+    public function __construct($tweetText)
+    {
+        $items = explode(',', $tweetText);
 
-		$this->time = Carbon::parse($items[0])->setTimezone('America/Los_Angeles');
-		$this->text = $items[1];
-	}
+        $this->time = Carbon::parse($items[0])->setTimezone('America/Los_Angeles');
+        $this->text = $items[1];
+    }
 
-	/**
-	 * Return the time in the desired format.
-	 * 
-	 * @return string
-	 */
-	public function time()
-	{
-		return $this->time->format('l, F jS, g:ia');
-	}
+    /**
+     * Return the time in the desired format.
+     *
+     * @return string
+     */
+    public function time()
+    {
+        return $this->time->format('l, F jS, g:ia');
+    }
 
-	/**
-	 * Return the time in the shorter format.
-	 * 
-	 * @return string
-	 */
-	public function shortTime()
-	{
-		return $this->time->format('M jS');
-	}
+    /**
+     * Return the time in the shorter format.
+     *
+     * @return string
+     */
+    public function shortTime()
+    {
+        return $this->time->format('M jS');
+    }
 
-	/**
-	 * Return the text of the tweet.
-	 * 
-	 * @return string
-	 */
-	public function formattedText()
-	{
-		$this->formatText();
+    /**
+     * Return the text of the tweet.
+     *
+     * @return string
+     */
+    public function formattedText()
+    {
+        $this->formatText();
 
-		return $this->text;
-	}
+        return $this->text;
+    }
 
- 	/**
- 	 * Completely format the text of the tweet.
- 	 *  
- 	 * @return void
- 	 */
-	public function formatText()
-	{
-		$this->linksToAnchorTags()
-  		     ->twitterHandlesToAchnorTags()
-		     ->hashtagsToAnchorTags();
-	}
+    /**
+     * Completely format the text of the tweet.
+     *
+     * @return void
+     */
+    public function formatText()
+    {
+        $this->linksToAnchorTags()
+             ->twitterHandlesToAnchorTags()
+             ->hashtagsToAnchorTags();
+    }
 
-	/**
-	 * Convert links to anchor tags for displaying in a web browser.
-	 * 
-	 * @return App\Tweet
-	 */
-	private function linksToAnchorTags()
-	{
-		$this->text = preg_replace('/(http[s]?:\/\/[a-z.\/0-9_?=-]*)/i', '<a target="_blank" href="$1">$1</a>', $this->text);
+    /**
+     * Convert links to anchor tags for displaying in a web browser.
+     *
+     * @return App\Tweet
+     */
+    private function linksToAnchorTags()
+    {
+        $this->text = preg_replace('/(http[s]?:\/\/[a-z.\/0-9_?=-]*)/i', '<a target="_blank" href="$1">$1</a>', $this->text);
 
-		return $this;
-	}
+        return $this;
+    }
 
-	/**
-	 * Convert twitter handles to anchor tags for displaying in a web browser.
-	 * 
-	 * @return App\Tweet
-	 */
-	private function twitterHandlesToAchnorTags()
-	{
-		$this->text =  preg_replace('/@(\w+)/', '<a target="_blank" href="https://twitter.com/$1">@$1</a>', $this->text);
+    /**
+     * Convert twitter handles to anchor tags for displaying in a web browser.
+     *
+     * @return App\Tweet
+     */
+    private function twitterHandlesToAchnorTags()
+    {
+        $this->text =  preg_replace('/@(\w+)/', '<a target="_blank" href="https://twitter.com/$1">@$1</a>', $this->text);
 
-		return $this;
-	}
+        return $this;
+    }
 
-	/**
-	 * Convert hash tags to anchor tags for displaying in a web browser.
-	 * 
-	 * @return string
-	 */
-	private function hashtagsToAnchorTags()
-	{
-		$this->text = preg_replace('/#([a-z0-9]+)/i', '<a target="_blank" href="https://twitter.com/hashtag/$1?src=hash">#$1</a>', $this->text);
+    /**
+     * Convert hash tags to anchor tags for displaying in a web browser.
+     *
+     * @return string
+     */
+    private function hashtagsToAnchorTags()
+    {
+        $this->text = preg_replace('/#([a-z0-9]+)/i', '<a target="_blank" href="https://twitter.com/hashtag/$1?src=hash">#$1</a>', $this->text);
 
-		return $this;
-	}
+        return $this;
+    }
 }
