@@ -12,7 +12,7 @@ use App\Database\QueryBuilder;
 
 $tweets = (new TweetLoader)->load()->toTweets();
 
-$loader = new Twig_Loader_Filesystem('../views');
+$loader = new Twig_Loader_Filesystem('../src/views');
 
 $twig = new Twig_Environment($loader, [
     'autoescape' => false
