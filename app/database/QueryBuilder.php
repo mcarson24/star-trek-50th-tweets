@@ -24,15 +24,19 @@ class QueryBuilder
 
 	public function insert($table, $parameters)
 	{
-		$query = $this->pdo->prepare(
-			sprintf('INSERT INTO %s (%s) VALUES (%s)', 
-				$table, 
-				implode(', ', array_keys($parameters)), 
-				':' . implode(', :', array_keys($parameters))
-			)
+		$sqlStatement = sprintf('INSERT INTO %s (%s) VALUES (%s)', 
+			$table, 
+			implode(', ', array_keys($parameters)), 
+			':' . implode(', :', array_keys($parameters))
 		);
+
+
+		$query = $this->pdo->prepare('INSERT INTO tweets (body, time) VALUES (:body, :time)');
 		
-		$query->execute($parameters);
+		$query->execute([
+			':body' => $parameters['body'],
+			':time' => $parameters['time']
+		]);
 	}
 
 

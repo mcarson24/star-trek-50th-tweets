@@ -6,14 +6,14 @@ use Carbon\Carbon;
 
 class Tweet
 {
-    protected $time;
-    protected $text;
+    public $time;
+    public $text;
 
     public function __construct($items)
     {
 
         $this->text = $items->body;
-        $this->time = Carbon::parse($items->time)->setTimezone('America/Los_Angeles');
+        $this->time = Carbon::createFromTimestamp($items->time)->setTimezone('America/Los_Angeles');
     }
 
     /**

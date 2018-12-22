@@ -6,10 +6,10 @@ use PDO;
 
 class Connection 
 {
-	public static function make()
+	public static function make($config)
 	{
 		try {
-			return new PDO('mysql:host=127.0.0.1;dbname=st_tweets', 'root', '', [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);
+			return new PDO($config);
 		} catch (PDOException $e) {
 			die (var_dump("ERROR: { $e->getCode() : { $e->getMessage()"));
 		}
