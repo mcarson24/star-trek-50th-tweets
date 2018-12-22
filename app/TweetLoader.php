@@ -3,21 +3,31 @@
 namespace App;
 
 use App\Tweet;
+use App\Database\Connection;
+use App\Database\QueryBuilder;
 use Illuminate\Support\Collection;
 
 class TweetLoader
 {
     protected $tweets;
 
+    protected $connection;
+
+    public function __construct()
+    {
+        $this->connection = new QueryBuilder(Connection::make());
+    }
+
     /**
-     * Loads the csv file and converts all items to Tweet Objects.
+     * Grabs everything from the tweets table and converts 
+     * all items that were returned to Tweet Objects.
      *
      * @param  $file
      * @return Illuminate\Support\Collection
      */
-    public function load($file)
+    public function load()
     {
-        $this->tweets = collect(fgetcsv(fopen($file, 'r'), 1050000, '^'));
+        $this->tweets = collect($this->connection->selectAll('tweets'));
 
         return $this->toTweets();
     }

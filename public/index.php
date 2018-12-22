@@ -2,9 +2,11 @@
 
 require __DIR__ . '/../vendor/autoload.php';
 
+use App\Tweet;
 use App\TweetLoader;
+use Illuminate\Support;
 
-$tweets = (new TweetLoader)->load('../holly-tweets.csv')->reverse();
+$tweets = (new TweetLoader)->load();
 
 $loader = new Twig_Loader_Filesystem('../views');
 

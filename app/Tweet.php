@@ -9,12 +9,11 @@ class Tweet
     protected $time;
     protected $text;
 
-    public function __construct($tweetText)
+    public function __construct($items)
     {
-        $items = explode(',', $tweetText);
 
-        $this->time = Carbon::parse($items[0])->setTimezone('America/Los_Angeles');
-        $this->text = $items[1];
+        $this->text = $items->body;
+        $this->time = Carbon::parse($items->time)->setTimezone('America/Los_Angeles');
     }
 
     /**
