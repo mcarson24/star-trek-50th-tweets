@@ -1,0 +1,140 @@
+@import url(https://fonts.googleapis.com/css?family=PT+Sans:400,700);
+.m-0-auto {
+  margin: 0 auto; }
+
+.m-b-1 {
+  margin-bottom: 1em; }
+
+.p-b-1 {
+  padding-bottom: 1em; }
+
+.p-b-2 {
+  padding-bottom: 2em; }
+
+.p-l-1 {
+  padding-left: 1em; }
+
+.p-b-s {
+  padding-bottom: 10px; }
+
+.p-t-s {
+  padding-top: 10px; }
+
+.text-center {
+  text-align: center; }
+
+.text-right {
+  text-align: right; }
+
+.text-left {
+  text-align: left; }
+
+.vertical-align-center {
+  vertical-align: super; }
+
+.center-items {
+  justify-content: space-between; }
+
+.flex {
+  display: flex;
+  justify-content: space-around; }
+
+.no-underline {
+  text-decoration: none; }
+
+.container {
+  width: 98%; }
+
+.short-time {
+  display: inline;
+  width: 18%; }
+
+.time {
+  display: none; }
+
+.tweet-sheet {
+  padding: 0 1.5%;
+  margin: 25px 0;
+  box-shadow: 1px 1px 3px 0px rgba(0, 0, 0, 0.5), -1px 0px 3px 0px rgba(0, 0, 0, 0.5);
+  border-radius: 5px;
+  background-color: #F5F5F5; }
+
+* {
+  line-height: 1.35em; }
+
+.h-1_5 {
+  font-size: 1.5em; }
+
+a {
+  text-decoration: none; }
+
+.right {
+  width: 250px; }
+
+.time-header {
+  width: 25%; }
+
+.tweet-header {
+  width: 75%;
+  padding-top: 33px; }
+
+.tweet-text {
+  width: 75%;
+  font-size: .75em;
+  overflow: scroll; }
+
+.logo {
+  width: 7%; }
+
+.twitter-logo {
+  width: 14.5%;
+  background: #000; }
+
+footer {
+  height: 125px;
+  background-color: #000;
+  color: #FFF;
+  padding: 15px 0; }
+  footer .flex {
+    height: 50px; }
+  footer .disclaimer {
+    font-size: .75em;
+    height: 25px; }
+  footer .container {
+    width: 95%; }
+  footer .top {
+    margin-bottom: 25px; }
+  footer a {
+    color: #FFF;
+    text-decoration: underline; }
+
+@media only screen and (min-width: 768px) {
+  .tweet-header {
+    padding-top: 0; }
+  .tweet-text {
+    font-size: 1em; }
+  footer > .container,
+  .container {
+    width: 85%; }
+  footer {
+    height: 100px; }
+  .short-time {
+    display: none; }
+  .time {
+    width: 25%;
+    display: inline; }
+  .twitter-logo {
+    width: 9.5%; } }
+
+html, body {
+  margin: 0;
+  background-color: #ececec; }
+
+html {
+  background-image: url("data:image/svg+xml,%3Csvg width='6' height='6' viewBox='0 0 6 6' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%239C92AC' fill-opacity='0.4' fill-rule='evenodd'%3E%3Cpath d='M5 0h1L0 6V5zM6 5v1H5z'/%3E%3C/g%3E%3C/svg%3E");
+  background-attachment: fixed; }
+
+body {
+  font-family: 'PT Sans';
+  background: transparent; }
+
