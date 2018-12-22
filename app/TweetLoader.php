@@ -18,7 +18,7 @@ class TweetLoader implements TweetLoaderInterface
     {
         $this->connection = new QueryBuilder(
             Connection::make(
-                App::get('config')['database']
+               'sqlite:' . __DIR__ . '/database/database.sqlite'
             )
         );
     }
@@ -27,11 +27,14 @@ class TweetLoader implements TweetLoaderInterface
      * Grabs everything from the tweets table and converts 
      * all items that were returned to Tweet Objects.
      *
+     * @param $page
      * @return Illuminate\Support\Collection
      */
-    public function load()
+    public function load($page = 1)
     {
-        $this->tweets = collect($this->connection->selectAll('tweets'));
+        $offset = ($page - 1) * 100;
+
+        $this->tweets = collect($this->connection->selectAll('tweets', $offset));
 
         return $this;
     }

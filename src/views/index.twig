@@ -29,6 +29,18 @@
 					</div>
 				{% endfor %}
 			</div>
+			<div class="pagination">
+				{% if (page > 1) %}
+					<div class="prev">
+						<a href="/?page={{ page - 1 }}">&lt;&lt;Prev</a>
+					</div>
+				{% endif %}
+				{% if (page < 46) %}
+					<div class="next">
+						<a href="/?page={{ page + 1 }}">Next&gt;&gt;</a>
+					</div>
+				{% endif %}
+			</div>
 		</div>
 		{{ include('footer.twig') }}
 	</body>

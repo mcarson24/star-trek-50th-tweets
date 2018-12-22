@@ -20,7 +20,7 @@ class FakeTweetLoader implements TweetLoaderInterface
      *
      * @return Illuminate\Support\Collection
      */
-	public function load()
+	public function load($page = 1)
 	{
 		$this->tweets = collect(fgetcsv(fopen($this->csvFile, 'r'), 1050000, '^'));
 

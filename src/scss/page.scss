@@ -18,3 +18,21 @@
 	border-radius: 5px;
 	background-color: $table-background-color;
 }
+
+.pagination {
+	display: flex; 
+	justify-content: space-between; 
+	margin-bottom: 10px;
+
+	div.prev {
+		display: flex; 
+		flex: 1; 
+		justify-content: flex-start;
+	}
+
+	div.next {
+		display: flex; 
+		flex: 1; 
+		justify-content: flex-end;
+	}
+}
