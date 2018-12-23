@@ -12,7 +12,8 @@
     "require": {
         "nesbot/carbon": "^1.22",
         "twig/twig": "~2.0",
-        "illuminate/support": "^5.4"
+        "illuminate/support": "^5.4",
+        "symfony/console": "^4.2"
     },
     "autoload": {
         "psr-4": {

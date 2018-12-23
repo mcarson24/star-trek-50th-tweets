@@ -4,6 +4,8 @@ require __DIR__ . '/../vendor/autoload.php';
 
 use App\TweetLoader;
 use App\SimplePagination;
+use App\Database\Connection;
+use App\Database\QueryBuilder;
 use Pagerfanta\Adapter\ArrayAdapter;
 
 $page = SimplePagination::currentPage();

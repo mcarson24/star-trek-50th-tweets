@@ -4,7 +4,7 @@ namespace App;
 
 use App\TweetLoaderInterface;
 
-class FakeTweetLoader implements TweetLoaderInterface
+class CsvTweetLoader implements TweetLoaderInterface
 {
 	protected $csvFile;
 
