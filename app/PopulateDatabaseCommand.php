@@ -11,6 +11,9 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 class PopulateDatabaseCommand extends Command
 {
+	protected $query;
+	protected $database;
+
 	public function configure()
 	{
 		$this->setName('populate-database')
@@ -19,31 +22,20 @@ class PopulateDatabaseCommand extends Command
 
 	public function execute(InputInterface $input, OutputInterface $output)
 	{
-		$database = __DIR__ . '/database/database.sqlite';
+		$this->chooseDatabaseType();
 		
-		if (!file_exists($database)) {
-			$this->createDatabase($database, $output);
+		if (!file_exists($this->database)) {
+			$this->createDatabase($this->database, $output);
 		}
 
-		$query = new QueryBuilder(Connection::make('sqlite:' . $database));
-		$query->createTweetsTable();
+		$this->prepareDatabase();
 
-		if ($this->databaseIsAlreadyPopulated($query)) {
+		if ($this->databaseIsAlreadyPopulated()) {
 			$output->writeln('<error>Database already populated with tweets!</error>');
 			exit();
 		}
 
-		$tweets = $this->getTweets();
-		$output->writeln("<info>Populating database with {$tweets->count()} tweets...</info>");
-
-		$tweets->each(function($tweet) use ($query) {
-			$query->insertIntoTweets([
-				'body' => $tweet->text,
-				'time' => $tweet->time->timestamp
-			]);
-		});
-
-		$output->writeln("<info>Database populated successfully!</info>");
+		$this->populateDatabase($output);
 	}
 
 	private function getTweets()
@@ -55,15 +47,42 @@ class PopulateDatabaseCommand extends Command
 		)->reverse();
 	}
 
-	private function databaseIsAlreadyPopulated($query)
+	private function databaseIsAlreadyPopulated()
 	{
-		return sizeof($query->selectAll(0, 10000)) == 4551;
+		return sizeof($this->query->selectAll(0, 10000)) == 4551;
 	}
 
 	private function createDatabase($database, OutputInterface $output)
 	{
 		$output->writeln('<info>Creating database...</info>');
-		fopen($database, 'w');
+		fopen($this->database, 'w');
 		$output->writeln('<info>Database created!</info>');
+	}
+
+	private function populateDatabase(OutputInterface $output)
+	{
+		$tweets = $this->getTweets();
+		
+		$output->writeln("<info>Populating database with {$tweets->count()} tweets...</info>");
+
+		$tweets->each(function($tweet) {
+			$this->query->insertIntoTweets([
+				'body' => $tweet->text,
+				'time' => $tweet->time->timestamp
+			]);
+		});
+
+		$output->writeln("<info>Database populated successfully!</info>");
+	}
+
+	private function chooseDatabaseType()
+	{
+		$this->database = __DIR__ . '/database/database.sqlite';
+	}
+
+	private function prepareDatabase()
+	{
+		$this->query = new QueryBuilder(Connection::make('sqlite:' . $this->database));
+		$this->query->createTweetsTable();		
 	}
 }
