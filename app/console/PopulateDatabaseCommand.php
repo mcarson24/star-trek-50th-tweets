@@ -64,7 +64,6 @@ class PopulateDatabaseCommand extends Command
 	{
 		$output->writeln('<info>Creating database...</info>');
 		fopen($database, 'w');
-		
 		$output->writeln("<info>Database created!");
 	}
 

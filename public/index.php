@@ -9,9 +9,7 @@ use App\Database\Connection;
 use App\Database\QueryBuilder;
 use Pagerfanta\Adapter\ArrayAdapter;
 
-$page = SimplePagination::currentPage();
-
-$tweets = (new TweetLoader)->load($page)->toTweets();
+$tweets = (new TweetLoader)->load(SimplePagination::currentPage())->toTweets();
 
 $loader = new Twig_Loader_Filesystem('../src/views');
 
