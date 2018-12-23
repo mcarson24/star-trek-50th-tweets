@@ -1,4 +1,7 @@
 /vendor/
 /node_modules/
+/app/database/database.sqlite
+app/database/database.sqlite
+.env
 .sass-cache/
 .DS_STORE

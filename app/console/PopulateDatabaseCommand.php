@@ -1,11 +1,12 @@
 <?php
 
-namespace App;
+namespace App\Console;
 
 use App\CsvTweetLoader;
 use App\Database\Connection;
 use App\Database\QueryBuilder;
 use Symfony\Component\Console\Command\Command;
+use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
@@ -16,16 +17,23 @@ class PopulateDatabaseCommand extends Command
 
 	public function configure()
 	{
-		$this->setName('populate-database')
+		$this->setName('populate')
+			 ->addOption('driver', 'd', InputOption::VALUE_OPTIONAL, 'The database driver')
 			 ->setDescription('Populate the database with the tweets.');
 	}
 
 	public function execute(InputInterface $input, OutputInterface $output)
 	{
+		require __DIR__ . '/../bootstrap.php';
+
 		$this->chooseDatabaseType();
 		
-		if (!file_exists($this->database)) {
-			$this->createDatabase($this->database, $output);
+		if ($input->getOption('driver')) {
+			$this->database = $input->getOption('driver');
+		}
+
+		if ($this->database == 'sqlite' && !file_exists($this->databasePath())) {
+			$this->createDatabase($this->databasePath(), $output);
 		}
 
 		$this->prepareDatabase();
@@ -40,7 +48,7 @@ class PopulateDatabaseCommand extends Command
 
 	private function getTweets()
 	{
-		$csvFile = __DIR__ . '/../tweets.csv';
+		$csvFile = project_root() . 'tweets.csv';
 		
 		return collect(
 			(new CsvTweetLoader($csvFile))->load()->toTweets()
@@ -49,14 +57,15 @@ class PopulateDatabaseCommand extends Command
 
 	private function databaseIsAlreadyPopulated()
 	{
-		return sizeof($this->query->selectAll(0, 10000)) == 4551;
+		return $this->amountOfTweetsInDatabase() >= 4551;
 	}
 
 	private function createDatabase($database, OutputInterface $output)
 	{
 		$output->writeln('<info>Creating database...</info>');
-		fopen($this->database, 'w');
-		$output->writeln('<info>Database created!</info>');
+		fopen($database, 'w');
+		
+		$output->writeln("<info>Database created!");
 	}
 
 	private function populateDatabase(OutputInterface $output)
@@ -68,7 +77,7 @@ class PopulateDatabaseCommand extends Command
 		$tweets->each(function($tweet) {
 			$this->query->insertIntoTweets([
 				'body' => $tweet->text,
-				'time' => $tweet->time->timestamp
+				'time' => $tweet->time
 			]);
 		});
 
@@ -77,12 +86,25 @@ class PopulateDatabaseCommand extends Command
 
 	private function chooseDatabaseType()
 	{
-		$this->database = __DIR__ . '/database/database.sqlite';
+		$this->database = getenv('DB_CONNECTION');
 	}
 
 	private function prepareDatabase()
 	{
-		$this->query = new QueryBuilder(Connection::make('sqlite:' . $this->database));
+		$this->query = new QueryBuilder(Connection::make($this->database), $this->database);
+
 		$this->query->createTweetsTable();		
+	}
+
+	private function amountOfTweetsInDatabase()
+	{
+		return $this->query->selectCount()[0]->amount;
+	}
+
+	private function databasePath()
+	{
+		if ($this->database == 'sqlite') return __DIR__ . '/../database/database.sqlite';
+
+		return 'st_tweets';
 	}
 }

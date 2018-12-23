@@ -3,7 +3,6 @@
 namespace App;
 
 use App\Tweet;
-use App\Database\Connection;
 use App\TweetLoaderInterface;
 use App\Database\QueryBuilder;
 use Illuminate\Support\Collection;
@@ -16,11 +15,9 @@ class TweetLoader implements TweetLoaderInterface
 
     public function __construct()
     {
-        $this->connection = new QueryBuilder(
-            Connection::make(
-               'sqlite:' . __DIR__ . '/database/database.sqlite'
-            )
-        );
+        $database = Container::get('database')[getenv('DB_CONNECTION')];
+
+        $this->connection = new QueryBuilder();
     }
 
     /**
@@ -34,7 +31,9 @@ class TweetLoader implements TweetLoaderInterface
     {
         $offset = ($page - 1) * 100;
 
-        $this->tweets = collect($this->connection->selectAll('tweets', $offset));
+        $this->tweets = collect(
+            $this->connection->selectAll($offset)
+        );
 
         return $this;
     }
