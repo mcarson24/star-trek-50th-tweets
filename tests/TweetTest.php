@@ -6,14 +6,10 @@ use PHPUnit\Framework\TestCase;
 
 class TweetTest extends TestCase
 {
-	public function setUp() {
-		$this->timestamp = Carbon::parse('2017-01-01 12:00:00 +0000')->timestamp;
-	}
-
 	/** @test */
 	public function it_can_replace_links_with_anchor_tags()
 	{
-	    $tweet = new Tweet((object) ['time' => $this->timestamp , 'body' => 'Just click here https://example.com!']);
+	    $tweet = new Tweet((object) ['time' => '2017-01-01 12:00:00 +0000' , 'body' => 'Just click here https://example.com!']);
 
 	    $this->assertEquals('Just click here <a target="_blank" href="https://example.com">https://example.com</a>!', $tweet->formattedText());
 	}
@@ -21,7 +17,7 @@ class TweetTest extends TestCase
 	/** @test */
 	public function it_can_replace_twitter_handles_with_anchor_tags()
 	{
-	    $tweet = new Tweet((object) ['time' => $this->timestamp, 'body' => 'Thanks alot @twitter!']);
+	    $tweet = new Tweet((object) ['time' => '2017-01-01 12:00:00 +0000', 'body' => 'Thanks alot @twitter!']);
 
 	    $this->assertEquals('Thanks alot <a target="_blank" href="https://twitter.com/twitter">@twitter</a>!', $tweet->formattedText());
 	}
@@ -29,7 +25,7 @@ class TweetTest extends TestCase
 	/** @test */
 	public function it_can_replace_hashtags_with_the_correct_anchor_tags()
 	{
-	    $tweet = new Tweet((object) ['time' => $this->timestamp, 'body' => 'So cool! #sample']);
+	    $tweet = new Tweet((object) ['time' => '2017-01-01 12:00:00 +0000', 'body' => 'So cool! #sample']);
 
 	    $this->assertEquals('So cool! <a target="_blank" href="https://twitter.com/hashtag/sample?src=hash">#sample</a>', $tweet->formattedText());
 	}
@@ -39,7 +35,7 @@ class TweetTest extends TestCase
 	{
 	    $tweet = new Tweet(
 	    	(object) [
-	    		'time' => Carbon::parse('2017-01-01 10:00:00 +0000')->timestamp, 
+	    		'time' => Carbon::parse('2017-01-01 10:00:00 +0000'), 
 	    		'body' => '@sample Hello everyone. #Greeting" https://twitter.com/sample'
 	    	]
 	    );
@@ -51,7 +47,7 @@ class TweetTest extends TestCase
 	/** @test */
 	public function it_can_set_time_into_a_shorter_format()
 	{
-	    $tweet = new Tweet((object) ['time' => $this->timestamp, 'body' => 'So cool! #sample']);
+	    $tweet = new Tweet((object) ['time' => '2017-01-01 12:00:00 +0000', 'body' => 'So cool! #sample']);
 
 	    $this->assertEquals('Jan 1st', $tweet->shortTime());
 	}
