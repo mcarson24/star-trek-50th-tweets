@@ -6,6 +6,7 @@ require __DIR__ . '/../app/bootstrap.php';
 use App\TweetLoader;
 use App\SimplePagination;
 
+die(var_dump(phpinfo()));
 $tweets = TweetLoader::load($page = SimplePagination::currentPage());
 
 $loader = new Twig_Loader_Filesystem('../src/views');
