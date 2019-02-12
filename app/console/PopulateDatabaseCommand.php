@@ -27,7 +27,7 @@ class PopulateDatabaseCommand extends Command
 		require __DIR__ . '/../bootstrap.php';
 
 		$this->chooseDatabaseType();
-		
+
 		if ($input->getOption('driver')) {
 			$this->database = $input->getOption('driver');
 		}
@@ -48,10 +48,10 @@ class PopulateDatabaseCommand extends Command
 
 	private function getTweets()
 	{
-		$csvFile = project_root() . 'tweets.csv';
+		$csvFile = __DIR__ . '/../../tweets.csv';
 		
 		return collect(
-			(new CsvTweetLoader($csvFile))->load()->toTweets()
+			CsvTweetLoader::load(1, $csvFile)
 		)->reverse();
 	}
 
@@ -79,6 +79,7 @@ class PopulateDatabaseCommand extends Command
 				'time' => $tweet->time
 			]);
 		});
+		
 
 		$output->writeln("<info>Database populated successfully!</info>");
 	}

@@ -36,8 +36,9 @@ class QueryBuilder
 
 	public function insertIntoTweets($parameters)
 	{
-		$query = $this->pdo->prepare('INSERT INTO tweets (body, time) VALUES (:body, :time)');
+		$query = $this->pdo->prepare('INSERT INTO tweets(body, time) VALUES(:body, :time)');
 		
+		// die(var_dump($parameters['time']));
 		$query->execute([
 			':body' => $parameters['body'],
 			':time' => $parameters['time']
@@ -63,6 +64,11 @@ class QueryBuilder
 						    `body` text NOT NULL,
 						    `time` timestamp NOT NULL,
 						    PRIMARY KEY (`id`)
+						)",
+			'pgsql' => "CREATE TABLE tweets (
+						   id SERIAL PRIMARY KEY NOT NULL,
+						   body TEXT NOT NULL,
+						   time TEXT NOT NULL
 						)"
 		];
 

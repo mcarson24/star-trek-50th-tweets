@@ -2,29 +2,27 @@
 
 namespace App;
 
+use App\Tweet;
 use App\TweetLoaderInterface;
 
 class CsvTweetLoader implements TweetLoaderInterface
 {
-	protected $csvFile;
+	protected static $csvFile;
 
-	protected $tweets;
-
-	public function __construct($csvFile)
-	{
-		$this->csvFile = $csvFile;
-	}
+	protected static $tweets;
 
 	/**
      * Loads the csv file and converts all items to Tweet Objects.
      *
      * @return Illuminate\Support\Collection
      */
-	public function load($page = 1)
+	public static function load($page = 1, $file = NULL)
 	{
-		$this->tweets = collect(fgetcsv(fopen($this->csvFile, 'r'), 1050000, '^'));
+		static::$csvFile = $file;
 
-		return $this;
+		static::$tweets = collect(fgetcsv(fopen(static::$csvFile, 'r'), 1050000, '^'));
+
+		return static::toTweets();
 	}
 
 	/**
@@ -32,9 +30,9 @@ class CsvTweetLoader implements TweetLoaderInterface
      *
      * @return Illuminate\Support\Collection
      */
-    public function toTweets()
+    public static function toTweets()
     {
-		return $this->tweets->map(function($tweet) {
+		return static::$tweets->map(function($tweet) {
 	    	$tweet = explode(',', $tweet);
 
 			$attributes = [

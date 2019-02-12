@@ -7,10 +7,18 @@ return [
 	],
 	'mysql' => [
 		'driver' 	=> 'mysql',
-		'host' 		=> getenv('DB_HOST', '127.0.0.1'),
-        'port' 		=> getenv('DB_PORT', '3306'),
-        'database' 	=> getenv('DB_DATABASE', 'tweets'),
-        'username' 	=> getenv('DB_USERNAME', 'user'),
-        'password' 	=> getenv('DB_PASSWORD', ''),
+		'host' 		=> getenv('DB_HOST'),
+        'port' 		=> getenv('DB_PORT'),
+        'database' 	=> getenv('DB_DATABASE'),
+        'username' 	=> getenv('DB_USERNAME'),
+        'password' 	=> getenv('DB_PASSWORD'),
+	],
+	'pgsql' => [
+		'driver'	=> 'pgsql',
+		'host'		=> getenv('DB_HOST'),
+		'port'		=> getenv('DB_PORT'),
+		'database'	=> getenv('DB_DATABASE'),
+		'username'	=> getenv('DB_USERNAME'),
+		'password'	=> getenv('DB_PASSWORD')
 	]
 ];

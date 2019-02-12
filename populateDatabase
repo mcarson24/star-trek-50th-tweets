@@ -4,7 +4,7 @@
 
 require __DIR__ . '/vendor/autoload.php';
 
-$app = new Symfony\Component\Console\Application('Star Trek 50th Anniversary Tweets | Database Populater', '0.1.0');
+$app = new Symfony\Component\Console\Application('Star Trek 50th Anniversary Tweets | Database Populator', '0.1.0');
 
 $app->add(new App\Console\PopulateDatabaseCommand());
 

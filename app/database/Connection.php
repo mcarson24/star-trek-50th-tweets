@@ -10,7 +10,7 @@ class Connection
 	public static function make($driver = NULL)
 	{
 		$config = static::buildConfig($driver);
-
+		
 		try {
 			return new PDO($config['dsn'], 
 						   $config['user'] ?? '', 
@@ -40,7 +40,13 @@ class Connection
 				$config['password'] = $database['password'];
 				$config['options'] = [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION];
 			    break;
+		    case 'pgsql':
+		    	$config['dsn'] = 'pgsql:host=' . $database['host'] . ';port=' . $database['port'] . ';dbname=' . $database['database'] . ';';
+		    	$config['user'] = $database['username'];
+		    	$config['password'] = $database['password'];
+		    	break;
 		}
+
 		return $config;
 	}
 }

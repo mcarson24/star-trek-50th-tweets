@@ -9,16 +9,9 @@ use Illuminate\Support\Collection;
 
 class TweetLoader implements TweetLoaderInterface
 {
-    protected $tweets;
+    protected static $tweets;
 
-    protected $connection;
-
-    public function __construct()
-    {
-        $database = Container::get('database')[getenv('DB_CONNECTION')];
-
-        $this->connection = new QueryBuilder();
-    }
+    protected static $connection;
 
     /**
      * Grabs everything from the tweets table and converts 
@@ -27,15 +20,17 @@ class TweetLoader implements TweetLoaderInterface
      * @param $page
      * @return Illuminate\Support\Collection
      */
-    public function load($page = 1)
+    public static function load($page = 1, $file = NULL)
     {
+        static::setUpDatabaseConnection();
+
         $offset = ($page - 1) * 100;
 
-        $this->tweets = collect(
-            $this->connection->selectAll($offset)
+        static::$tweets = collect(
+            static::$connection->selectAll($offset)
         );
 
-        return $this;
+        return static::toTweets();
     }
 
     /**
@@ -43,10 +38,16 @@ class TweetLoader implements TweetLoaderInterface
      *
      * @return Illuminate\Support\Collection
      */
-    public function toTweets()
+    public static function toTweets()
     {
-        return $this->tweets->map(function ($tweet) {
+        return static::$tweets->map(function ($tweet) {
             return new Tweet($tweet);
         });
+
+    }
+
+    private static function setUpDatabaseConnection()
+    {
+        static::$connection = new QueryBuilder();
     }
 }

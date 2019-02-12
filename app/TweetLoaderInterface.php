@@ -4,7 +4,7 @@ namespace App;
 
 interface TweetLoaderInterface
 {
-    public function load($page = 1);
+    public static function load($page = 1, $file = NULL);
 
-    public function toTweets();
+    public static function toTweets();
 }

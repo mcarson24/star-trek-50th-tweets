@@ -9,8 +9,10 @@ class TweetLoaderTest extends TestCase
     /** @test */
     public function it_converts_a_csv_into_a_collection_of_tweets()
     {
-		$tweets = (new CsvTweetLoader(__DIR__ . '/test-tweets.csv'))->load()->toTweets();
-
+		$tweets = collect(
+			CsvTweetLoader::load(1, __DIR__ . '/test-tweets.csv')
+		);
+		
         $this->assertInstanceOf(Tweet::class, $tweets->first());
         $this->assertCount(2, $tweets);
     }

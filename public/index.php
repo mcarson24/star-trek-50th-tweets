@@ -5,11 +5,8 @@ require __DIR__ . '/../app/bootstrap.php';
 
 use App\TweetLoader;
 use App\SimplePagination;
-use App\Database\Connection;
-use App\Database\QueryBuilder;
-use Pagerfanta\Adapter\ArrayAdapter;
 
-$tweets = (new TweetLoader)->load(SimplePagination::currentPage())->toTweets();
+$tweets = TweetLoader::load($page = SimplePagination::currentPage());
 
 $loader = new Twig_Loader_Filesystem('../src/views');
 
