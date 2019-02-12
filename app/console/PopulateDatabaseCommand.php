@@ -86,7 +86,7 @@ class PopulateDatabaseCommand extends Command
 
 	private function chooseDatabaseType()
 	{
-		$this->database = getenv('DB_CONNECTION');
+		$this->database = getenv('DB_CONNECTION') ?? 'pgsql';
 	}
 
 	private function prepareDatabase()
