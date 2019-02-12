@@ -24,7 +24,7 @@ class Connection
 
 	private static function buildConfig($driver)
 	{
-		$connectionType = $driver ?? getEnv('DB_CONNECTION');
+		$connectionType = $driver ?? getenv('DB_CONNECTION');
 		$database = Container::get('database')[$connectionType];
 		
 		$config = [];
