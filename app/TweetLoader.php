@@ -5,12 +5,21 @@ namespace App;
 use App\Tweet;
 use App\TweetLoaderInterface;
 use App\Database\QueryBuilder;
-use Illuminate\Support\Collection;
 
 class TweetLoader implements TweetLoaderInterface
 {
+    /**
+     * The loaded tweets.
+     * 
+     * @var Illuminate\Support\Collection
+     */
     protected static $tweets;
 
+    /**
+     * The database connection/
+     * 
+     * @var PDO
+     */
     protected static $connection;
 
     /**
@@ -24,11 +33,7 @@ class TweetLoader implements TweetLoaderInterface
     {
         static::setUpDatabaseConnection();
 
-        $offset = ($page - 1) * 100;
-
-        static::$tweets = collect(
-            static::$connection->selectAll($offset)
-        );
+        static::$tweets = static::$connection->select(static::tweetOffset($page));
 
         return static::toTweets();
     }
@@ -43,11 +48,27 @@ class TweetLoader implements TweetLoaderInterface
         return static::$tweets->map(function ($tweet) {
             return new Tweet($tweet);
         });
-
     }
 
+    /**
+     * Set up a database connection.
+     * 
+     * @return void
+     */
     private static function setUpDatabaseConnection()
     {
         static::$connection = new QueryBuilder();
+    }
+
+    /**
+     * Determine the set of tweets to select 
+     * for the desired page.
+     * 
+     * @param  integer $page 
+     * @return integer
+     */
+    private static function tweetOffset($page)
+    {
+        return ($page - 1) * 100;
     }
 }

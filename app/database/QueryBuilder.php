@@ -5,6 +5,7 @@ namespace App\Database;
 use \PDO;
 use Illuminate\Support\Str;
 use App\Database\Connection;
+use Illuminate\Support\Collection;
 
 class QueryBuilder
 {
@@ -14,27 +15,46 @@ class QueryBuilder
 	public function __construct(PDO $pdo = NULL, $driver = NULL)
 	{
 		$this->pdo = $pdo ?? Connection::make();
-		$this->driver = $driver;
+
+		$this->driver = $driver ?? getenv('DB_CONNECTION');
 	}
 
-	public function selectCount()
+	/**
+	 * Get the amount of tweets in the tweets table.
+	 * 
+	 * @return string
+	 */
+	public function getCount()
 	{
 		$query = $this->pdo->prepare('SELECT COUNT(id) AS amount FROM tweets;');
 
 		$query->execute();
 
-		return $query->fetchAll(\PDO::FETCH_CLASS);
+		return $query->fetchAll(\PDO::FETCH_CLASS)[0];
 	}
 
-	public function selectAll($offset = 1, $limit = 100)
+	/**
+	 * Get tweets from the database.
+	 * 
+	 * @param  integer $offset
+	 * @param  integer $limit 
+	 * @return array        
+	 */
+	public function select($offset = 1, $limit = 100)
 	{
-		$query = $this->pdo->prepare("SELECT * FROM tweets LIMIT 100 OFFSET " . $offset . ';');
+		$query = $this->pdo->prepare("SELECT * FROM tweets LIMIT 100 OFFSET {$offset};");
 
 		$query->execute();
 
-		return $query->fetchAll(\PDO::FETCH_CLASS);
+		return collect($query->fetchAll(\PDO::FETCH_CLASS));
 	}
 
+	/**
+	 * Insert a tweet into the tweets table.
+	 * 
+	 * @param  array $parameters 
+	 * @return void             
+	 */
 	public function insertIntoTweets($parameters)
 	{
 		$query = $this->pdo->prepare('INSERT INTO tweets(body, time) VALUES(:body, :time)');
@@ -45,15 +65,26 @@ class QueryBuilder
 		]);
 	}
 
+	/**
+	 * Create a table in the database to store tweets.
+	 * 
+	 * @return void
+	 */
 	public function createTweetsTable() {
-		$query = $this->pdo->prepare($this->sqlCreateStatementFor($this->driver ?? getenv('DB_CONNECTION')));
-
-		$query->execute();
+		$this->pdo->prepare(
+			$this->tableCreateStatement()
+		)->execute();
 	}
 
-	public function sqlCreateStatementFor($driver)
+	/**
+	 * Return the tweets table create statement for
+	 * the desired database driver type.
+	 * 
+	 * @return string
+	 */
+	public function tableCreateStatement()
 	{
-		$statements = [
+		return [
 			'sqlite' => "CREATE TABLE IF NOT EXISTS 'tweets' (
 							'id'	INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
 							'body'	TEXT NOT NULL,
@@ -70,8 +101,6 @@ class QueryBuilder
 						   body TEXT NOT NULL,
 						   time TEXT NOT NULL
 						)"
-		];
-
-		return $statements[$driver];
+		][$this->driver];
 	}
 }

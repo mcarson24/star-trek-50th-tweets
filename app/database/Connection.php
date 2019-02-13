@@ -18,7 +18,7 @@ class Connection
 		
 		try {
 			return new PDO($config['dsn'], 
-						   $config['user'] ?? '', 
+						   $config['username'] ?? '', 
 						   $config['password'] ?? '', 
 						   $config['options'] ?? []
 			);
