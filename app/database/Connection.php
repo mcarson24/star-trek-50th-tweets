@@ -7,9 +7,14 @@ use App\Container;
 
 class Connection 
 {
-	public static function make($driver = NULL)
+	/**
+	 * Create a database connection.
+	 * 
+	 * @return PDO
+	 */
+	public static function make()
 	{
-		$config = static::buildConfig($driver);
+		$config = static::buildConfig();
 		
 		try {
 			return new PDO($config['dsn'], 
@@ -18,36 +23,19 @@ class Connection
 						   $config['options'] ?? []
 			);
 		} catch (PDOException $e) {
-			throw new PDOException("ERROR: { $e->getCode() : { $e->getMessage()");
+			echo "ERROR: { $e->getCode() } : { $e->getMessage() }";
 		}
 	}
 
-	private static function buildConfig($driver)
+	/**
+	 * Build up a configuration array for the
+	 * desired connection type. 
+	 * 
+	 * @param  string $driver
+	 * @return array
+	 */
+	private static function buildConfig()
 	{
-		$connectionType = $driver ?? getenv('DB_CONNECTION');
-		$database = Container::get('database')[$connectionType];
-		
-		$config = [];
-
-		switch($connectionType)
-		{
-			case 'sqlite':
-				$config['dsn'] = 'sqlite:' . $database['database'];
-				break;
-			case 'mysql':
-				$config['dsn'] = 'mysql:host=' . $database['host'] . ';dbname=' . $database['database'];
-				$config['user'] = $database['username'];
-				$config['password'] = $database['password'];
-				$config['options'] = [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION];
-			    break;
-		    case 'pgsql':
-		    	$config['dsn'] = 'pgsql:host=' . $database['host'] . ';port=' . $database['port'] . ';dbname=' . $database['database'] . ';';
-		    	$config['user'] = $database['username'];
-		    	$config['password'] = $database['password'];
-		    	break;
-		}
-
-		return $config;
+		return Container::get('database')[getenv('DB_CONNECTION')];
 	}
 }
-

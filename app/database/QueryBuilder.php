@@ -2,6 +2,7 @@
 
 namespace App\Database;
 
+use \PDO;
 use Illuminate\Support\Str;
 use App\Database\Connection;
 
@@ -10,9 +11,9 @@ class QueryBuilder
 	protected $pdo;
 	protected $driver;
 
-	public function __construct(\PDO $pdo = NULL, $driver = NULL)
+	public function __construct(PDO $pdo = NULL, $driver = NULL)
 	{
-		$this->pdo =  $pdo ?? Connection::make();
+		$this->pdo = $pdo ?? Connection::make();
 		$this->driver = $driver;
 	}
 
@@ -38,7 +39,6 @@ class QueryBuilder
 	{
 		$query = $this->pdo->prepare('INSERT INTO tweets(body, time) VALUES(:body, :time)');
 		
-		// die(var_dump($parameters['time']));
 		$query->execute([
 			':body' => $parameters['body'],
 			':time' => $parameters['time']
