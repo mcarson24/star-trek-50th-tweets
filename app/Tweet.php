@@ -35,11 +35,6 @@ class Tweet
         return $this->time->format('M jS');
     }
 
-    public function timestamp() 
-    {
-        return $this->time->timestamp;
-    }
-
     /**
      * Return the text of the tweet.
      *

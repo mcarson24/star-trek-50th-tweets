@@ -16,7 +16,7 @@ class TweetLoader implements TweetLoaderInterface
     protected static $tweets;
 
     /**
-     * The database connection/
+     * The database connection.
      * 
      * @var PDO
      */
