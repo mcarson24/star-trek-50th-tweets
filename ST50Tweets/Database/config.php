@@ -8,20 +8,20 @@ return [
 	],
 	'mysql' => [
 		'driver' 	=> 'mysql',
-		'host' 		=> getenv('DB_HOST'),
-        'port' 		=> getenv('DB_PORT'),
-        'database' 	=> getenv('DB_DATABASE'),
-        'username' 	=> getenv('DB_USERNAME'),
-        'password' 	=> getenv('DB_PASSWORD'),
-        'dsn'		=> 'mysql:host=' . getenv('DB_HOST') . ';dbname=' . getenv('DB_DATABASE')
+		'host' 		=> $_ENV['DB_HOST'],
+        'port' 		=> $_ENV['DB_PORT'],
+        'database' 	=> $_ENV['DB_DATABASE'],
+        'username' 	=> $_ENV['DB_USERNAME'],
+        'password' 	=> $_ENV['DB_PASSWORD'],
+        'dsn'		=> 'mysql:host=' . $_ENV['DB_HOST'] . ';dbname=' . $_ENV['DB_DATABASE']
 	],
 	'pgsql' => [
 		'driver'	=> 'pgsql',
-		'host'		=> getenv('DB_HOST'),
-		'port'		=> getenv('DB_PORT'),
-		'database'	=> getenv('DB_DATABASE'),
-		'username'	=> getenv('DB_USERNAME'),
-		'password'	=> getenv('DB_PASSWORD'),
-		'dsn'		=> 'pgsql:host=' . getenv('DB_HOST') . ';port=' . getenv('DB_PORT') . ';dbname=' . getenv('DB_DATABASE') . ';'
+		'host'		=> $_ENV['DB_HOST'],
+		'port'		=> $_ENV['DB_PORT'],
+		'database'	=> $_ENV['DB_DATABASE'],
+		'username'	=> $_ENV['DB_USERNAME'],
+		'password'	=> $_ENV['DB_PASSWORD'],
+		'dsn'		=> 'pgsql:host=' . $_ENV['DB_HOST'] . ';port=' . $_ENV['DB_PORT'] . ';dbname=' . $_ENV['DB_DATABASE'] . ';'
 	]
 ];

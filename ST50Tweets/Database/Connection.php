@@ -36,6 +36,6 @@ class Connection
 	 */
 	private static function buildConfig()
 	{
-		return Container::get('database')[getenv('DB_CONNECTION')];
+		return Container::get('database')[$_ENV['DB_CONNECTION']];
 	}
 }
