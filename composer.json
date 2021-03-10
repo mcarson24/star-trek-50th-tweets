@@ -18,7 +18,7 @@
     },
     "autoload": {
         "psr-4": {
-            "ST50Tweets\\": "app/"
+            "ST50Tweets\\": "ST50Tweets/"
         }
     },
     "require-dev": {
