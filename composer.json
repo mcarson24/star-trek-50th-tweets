@@ -10,7 +10,7 @@
         }
     ],
     "require": {
-        "nesbot/carbon": "^1.22",
+        "nesbot/carbon": "^2.46",
         "twig/twig": "~2.0",
         "illuminate/support": "^5.4",
         "symfony/console": "^4.2",
