@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace ST50Tweets;
 
 class Container 
 {

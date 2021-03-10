@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Console;
+namespace ST50Tweets\Console;
 
-use App\CsvTweetLoader;
-use App\Database\Connection;
-use App\Database\QueryBuilder;
+use ST50Tweets\CsvTweetLoader;
+use ST50Tweets\Database\Connection;
+use ST50Tweets\Database\QueryBuilder;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Input\InputInterface;

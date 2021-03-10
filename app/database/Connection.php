@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Database;
+namespace ST50Tweets\Database;
 
 use PDO;
-use App\Container;
+use ST50Tweets\Container;
 
 class Connection 
 {

@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace ST50Tweets;
 
 use App\Tweet;
 use App\TweetLoaderInterface;

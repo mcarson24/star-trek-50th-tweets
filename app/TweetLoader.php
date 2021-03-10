@@ -1,10 +1,10 @@
 <?php
 
-namespace App;
+namespace ST50Tweets;
 
-use App\Tweet;
-use App\TweetLoaderInterface;
-use App\Database\QueryBuilder;
+use ST50Tweets\Tweet;
+use ST50Tweets\TweetLoaderInterface;
+use ST50Tweets\Database\QueryBuilder;
 
 class TweetLoader implements TweetLoaderInterface
 {

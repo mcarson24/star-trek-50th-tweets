@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Database;
+namespace ST50Tweets\Database;
 
 use \PDO;
 use Illuminate\Support\Str;
-use App\Database\Connection;
 use Illuminate\Support\Collection;
+use ST50Tweets\Database\Connection;
 
 class QueryBuilder
 {

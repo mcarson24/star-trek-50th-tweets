@@ -3,8 +3,8 @@
 require __DIR__ . '/../vendor/autoload.php';
 require __DIR__ . '/../app/bootstrap.php';
 
-use App\TweetLoader;
-use App\SimplePagination;
+use ST50Tweets\TweetLoader;
+use ST50Tweets\SimplePagination;
 
 $tweets = TweetLoader::load($page = SimplePagination::currentPage());
 
