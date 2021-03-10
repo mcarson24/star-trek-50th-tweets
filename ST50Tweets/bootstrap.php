@@ -1,9 +1,8 @@
 <?php
 
 use ST50Tweets\Container;
-use Dotenv\Dotenv;
 
-$dotenv = new Dotenv(__DIR__ . '/..');
+$dotenv = new Dotenv\Dotenv(__DIR__ . '/..');
 $dotenv->load();
 
 
